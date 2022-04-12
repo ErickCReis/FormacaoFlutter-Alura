@@ -16,3 +16,11 @@
 - Refatorar os próprios Widgets;
 - O que é StatelessWidget e StatefulWidget;
 - Organizar e reutilizar código no Flutter.
+
+### Aula 03 - Criando formulários e refatorando código
+
+- Maneiras de evitar Widgets inesperados para outras telas;
+- Como habilitar e utilizar o Hot Reload;
+- Criar um layout para formulário;
+- Aplicar margem em Widgets;
+- Como pegar o valor e estilizar `TextField`.
