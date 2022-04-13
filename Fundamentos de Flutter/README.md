@@ -24,3 +24,11 @@
 - Criar um layout para formulário;
 - Aplicar margem em Widgets;
 - Como pegar o valor e estilizar `TextField`.
+
+### Aula 04 - Utilizando uma lista dinâmica de Widgets
+
+- Refatorar Widget para receber argumentos opcionais nomeados;
+- Navegar entre páginas por meio do Navigator;
+- Receber informações ao realizar o pop durante a navegação;
+- Como lidar com o operações assíncronas usando o Future;
+- Implementar o ListView com o builder;
