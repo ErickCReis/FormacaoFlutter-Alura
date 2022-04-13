@@ -32,3 +32,10 @@
 - Receber informações ao realizar o pop durante a navegação;
 - Como lidar com o operações assíncronas usando o Future;
 - Implementar o ListView com o builder;
+
+### Aula 05 - Utilizando StatefulWidgets
+
+- Implementar StatefulWidgets;
+- Evitar bugs comuns na implementação de fluxo de tela e formulário;
+- Ajustar o tema do App com as cores do Color Tool;
+- Organizar a estrutura do projeto.
