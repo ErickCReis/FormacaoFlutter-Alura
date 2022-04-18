@@ -1,4 +1,7 @@
+import 'package:bytebank/database/app_database.dart';
+import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/contact_form.dart';
+import 'package:bytebank/widgets/contact_item.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatelessWidget {
@@ -10,25 +13,35 @@ class ContactsList extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Contacts'),
       ),
-      body: ListView(
-        children: const [
-          Card(
-            child: ListTile(
-              title: Text(
-                'Erick',
-                style: TextStyle(
-                  fontSize: 24.0,
-                ),
+      body: FutureBuilder<List<Contact>>(
+        initialData: const [],
+        future: findAll(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CircularProgressIndicator(),
+                  Text('Loading...'),
+                ],
               ),
-              subtitle: Text(
-                '1000',
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-          )
-        ],
+            );
+          }
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            final List<Contact> contacts = snapshot.data ?? [];
+            return ListView.builder(
+              itemCount: contacts.length,
+              itemBuilder: (context, index) {
+                final Contact contact = contacts[index];
+                return ContactItem(contact);
+              },
+            );
+          }
+
+          return const Text('Unknown error');
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -19,3 +19,10 @@
 - Configurar o sqflite;
 - Criar banco de dados e tabela;
 - Salvar e buscar dados do banco.
+
+### Aula 04 - Integrando o banco de dados com as telas
+
+- Apresentar lista dinamicamente com o `FutureBuilder`;
+- Lidar com os problemas comuns do `FutureBuilder`;
+- Implementar a apresentação de conteúdo visual apropriadamente;
+- Criar um Widget para indicar progresso.
