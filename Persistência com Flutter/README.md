@@ -11,3 +11,11 @@
 - Adicionar eventos em containers que não possuem propriedades de eventos;
 - Manter o comportamento esperado de clique no Material Design;
 - Aumentar um Widget que não tem propriedades de altura ou largura.
+
+### Aula 03 - Configurando o banco de dados
+
+- Quais são as possibilidades de armazenamento de dados no Flutter;
+- Adicionar dependências no projeto;
+- Configurar o sqflite;
+- Criar banco de dados e tabela;
+- Salvar e buscar dados do banco.
