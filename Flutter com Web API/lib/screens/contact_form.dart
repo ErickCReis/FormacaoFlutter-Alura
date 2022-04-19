@@ -22,7 +22,7 @@ class _ContactFormState extends State<ContactForm> {
         title: const Text('New Contact'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextField(
@@ -31,24 +31,24 @@ class _ContactFormState extends State<ContactForm> {
                 labelText: 'Full name',
               ),
               style: const TextStyle(
-                fontSize: 24.0,
+                fontSize: 24,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 8),
               child: TextField(
                 controller: _accountNumberController,
                 decoration: const InputDecoration(
                   labelText: 'Account number',
                 ),
                 style: const TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 24,
                 ),
                 keyboardType: TextInputType.number,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: 16),
               child: SizedBox(
                 width: double.maxFinite,
                 child: ElevatedButton(

@@ -13,13 +13,13 @@ class ContactItem extends StatelessWidget {
         title: Text(
           contact.name,
           style: const TextStyle(
-            fontSize: 24.0,
+            fontSize: 24,
           ),
         ),
         subtitle: Text(
           contact.accountNumber.toString(),
           style: const TextStyle(
-            fontSize: 16.0,
+            fontSize: 16,
           ),
         ),
       ),
