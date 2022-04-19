@@ -6,3 +6,10 @@
 - A utilizar o row para estruturar Widgets no modo horizontal;
 - Como utilizar funções de callback para delegar comportamentos de eventos;
 - Como indicar que o argumento é obrigatório mesmo sendo opcional.
+
+### Aula 02 - Realizando comunicação http
+
+- Executar uma web API do Spring Boot;
+- Testar a web API com o Postman;
+- Configurar e usar o package http do Dart;
+- Realizar uma requisição GET do http no Flutter.
