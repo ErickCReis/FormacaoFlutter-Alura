@@ -13,20 +13,4 @@ class Contact {
   String toString() {
     return 'Contact(id: $id, name: $name, accountNumber: $accountNumber)';
   }
-
-  factory Contact.fromMap(Map<String, dynamic> map) {
-    return Contact(
-      map['id'],
-      map['name'],
-      map['account_number'],
-    );
-  }
-
-  Map<String, dynamic> toMap({ignoreId = false}) {
-    return {
-      'id': ignoreId ? null : id,
-      'name': name,
-      'account_number': accountNumber,
-    };
-  }
 }

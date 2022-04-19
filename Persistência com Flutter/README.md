@@ -26,3 +26,9 @@
 - Lidar com os problemas comuns do `FutureBuilder`;
 - Implementar a apresentação de conteúdo visual apropriadamente;
 - Criar um Widget para indicar progresso.
+
+### Aula 05 - Finalizando o fluxo com o banco de dados
+
+- Salvar dados no banco de dados por meio de um formulário;
+- Utilizar o `async` `await`;
+- Implementar o padrão de projeto DAO.
