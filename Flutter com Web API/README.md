@@ -19,3 +19,9 @@
 - Converter json para objeto do Dart;
 - Apresentar dados da web api com o FutureBuilder;
 - Exibir um feedback adequado para situações excepcionais.
+
+### Aula 04 - Enviando transferência para a web api
+
+- Implementar a requisição post para o HTTP;
+- Salvar uma transferência na web api;
+- Converter objeto Dart para JSON.
