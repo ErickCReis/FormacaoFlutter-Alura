@@ -13,3 +13,9 @@
 - Testar a web API com o Postman;
 - Configurar e usar o package http do Dart;
 - Realizar uma requisição GET do http no Flutter.
+
+### Aula 03 - Apresentando dados da web api na tela do App
+
+- Converter json para objeto do Dart;
+- Apresentar dados da web api com o FutureBuilder;
+- Exibir um feedback adequado para situações excepcionais.

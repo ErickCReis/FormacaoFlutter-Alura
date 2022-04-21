@@ -1,7 +1,9 @@
 import 'package:bytebank/database/dao/contact_dao.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/contact_form.dart';
+import 'package:bytebank/widgets/centered_message.dart';
 import 'package:bytebank/widgets/contact_item.dart';
+import 'package:bytebank/widgets/progress.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatefulWidget {
@@ -25,19 +27,19 @@ class _ContactsListState extends State<ContactsList> {
         future: _dao.findAll(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CircularProgressIndicator(),
-                  Text('Loading...'),
-                ],
-              ),
-            );
+            return const Progress();
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
             final List<Contact> contacts = snapshot.data ?? [];
+
+            if (contacts.isEmpty) {
+              return const CenteredMessage(
+                'No contacts found',
+                icon: Icons.warning,
+              );
+            }
+
             return ListView.builder(
               itemCount: contacts.length,
               itemBuilder: (context, index) {
@@ -47,7 +49,7 @@ class _ContactsListState extends State<ContactsList> {
             );
           }
 
-          return const Text('Unknown error');
+          return const CenteredMessage('Unknown error');
         },
       ),
       floatingActionButton: FloatingActionButton(
