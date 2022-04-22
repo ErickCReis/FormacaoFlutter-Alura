@@ -25,3 +25,9 @@
 - Implementar a requisição post para o HTTP;
 - Salvar uma transferência na web api;
 - Converter objeto Dart para JSON.
+
+### Aula 05 - Melhorando o webclient
+
+- Organizar o código do web client;
+- Simplificar a conversão entre objetos e JSON;
+- Utilizar a função `map()` para converter uma lista.
