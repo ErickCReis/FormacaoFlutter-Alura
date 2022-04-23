@@ -31,3 +31,12 @@
 - Organizar o código do web client;
 - Simplificar a conversão entre objetos e JSON;
 - Utilizar a função `map()` para converter uma lista.
+
+---
+## Flutter: entendendo comunicação http e utilizando web api
+---
+
+### Aula 01 - Autenticando transferência
+
+- Implementar um dialog;
+- Evitar o problema de envio de `BuildContext` diferentes.

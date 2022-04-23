@@ -1,6 +1,7 @@
 import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/transaction.dart';
+import 'package:bytebank/widgets/transaction_auth_dialog.dart';
 import 'package:flutter/material.dart';
 
 class TransactionForm extends StatefulWidget {
@@ -68,12 +69,19 @@ class _TransactionFormState extends State<TransactionForm> {
                         return;
                       }
 
-                      final transactionCreated =
-                          Transaction(value, widget.contact);
+                      showDialog(
+                        context: context,
+                        builder: (_) => TransactionAuthDialog(
+                          onConfirm: (String password) {
+                            final Transaction transaction = Transaction(
+                              value,
+                              widget.contact,
+                            );
 
-                      _webClient.save(transactionCreated).then((transaction) {
-                        Navigator.pop(context);
-                      });
+                            _save(transaction, password, context);
+                          },
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -82,6 +90,20 @@ class _TransactionFormState extends State<TransactionForm> {
           ),
         ),
       ),
+    );
+  }
+
+  void _save(
+    Transaction transaction,
+    String password,
+    BuildContext context,
+  ) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    _webClient.save(transaction, password).then(
+      (transaction) {
+        Navigator.of(context).pop();
+      },
     );
   }
 }
