@@ -1,6 +1,7 @@
 import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/transaction.dart';
+import 'package:bytebank/widgets/response_dialog.dart';
 import 'package:bytebank/widgets/transaction_auth_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -98,12 +99,18 @@ class _TransactionFormState extends State<TransactionForm> {
     String password,
     BuildContext context,
   ) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await _webClient.save(transaction, password).catchError((e) {
+      showDialog(
+        context: context,
+        builder: (_) => FailureDialog(e.message),
+      );
+    }, test: (e) => e is Exception);
 
-    _webClient.save(transaction, password).then(
-      (transaction) {
-        Navigator.of(context).pop();
-      },
+    await showDialog(
+      context: context,
+      builder: (_) => const SuccessDialog('Transaction success'),
     );
+
+    Navigator.of(context).pop();
   }
 }

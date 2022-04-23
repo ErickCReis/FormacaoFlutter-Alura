@@ -28,6 +28,15 @@ class TransactionWebClient {
         )
         .timeout(const Duration(seconds: 5));
 
-    return Transaction.fromJson(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return Transaction.fromJson(jsonDecode(response.body));
+    }
+
+    throw Exception(_statusCodeResponses[response.statusCode]);
   }
+
+  static const Map<int, String> _statusCodeResponses = {
+    400: 'There was an error submitting the transaction',
+    401: 'Authentication failed',
+  };
 }
