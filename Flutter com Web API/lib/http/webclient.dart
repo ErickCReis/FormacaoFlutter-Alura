@@ -7,4 +7,4 @@ final Client client = InterceptedClient.build(
   requestTimeout: const Duration(seconds: 5),
 );
 
-final Uri baseUrl = Uri.parse('http://10.255.255.1:8080/transactions');
+final Uri baseUrl = Uri.parse('http://localhost:8080/transactions');

@@ -16,6 +16,7 @@ class TransactionWebClient {
   }
 
   Future<Transaction?> save(Transaction transaction, String password) async {
+    await Future.delayed(const Duration(seconds: 2));
     final response = await client.post(
       baseUrl,
       headers: {

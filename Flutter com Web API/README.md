@@ -58,3 +58,8 @@
 - Aplicar idempotência ao enviar transferências;
 - Utilizar UUID no Dart;
 - Evitar problema de código HTTP inesperado.
+
+### Aula 05 - Feedback ao enviar transferência
+
+- Implementar feedback de envio ao enviar transferências;
+- Realizar pós execução ao finalizar o Future.

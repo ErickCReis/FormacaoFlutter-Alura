@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/transaction.dart';
+import 'package:bytebank/widgets/progress.dart';
 import 'package:bytebank/widgets/response_dialog.dart';
 import 'package:bytebank/widgets/transaction_auth_dialog.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class _TransactionFormState extends State<TransactionForm> {
   final TransactionWebClient _webClient = TransactionWebClient();
   final String transactionId = const Uuid().v4();
 
+  bool _sending = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +36,7 @@ class _TransactionFormState extends State<TransactionForm> {
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               Text(
                 widget.contact.name,
                 style: const TextStyle(
@@ -65,12 +68,19 @@ class _TransactionFormState extends State<TransactionForm> {
                 child: SizedBox(
                   width: double.maxFinite,
                   child: ElevatedButton(
-                    child: const Text('Transfer'),
+                    child: _sending
+                        ? const Progress(
+                            message: 'Sending...',
+                            direction: Axis.horizontal,
+                            progressSize: 24,
+                            progressColor: Colors.white,
+                          )
+                        : const Text('Transfer'),
                     onPressed: () {
                       final double? value =
                           double.tryParse(_valueController.text);
 
-                      if (value == null) {
+                      if (_sending || value == null) {
                         return;
                       }
 
@@ -114,6 +124,10 @@ class _TransactionFormState extends State<TransactionForm> {
     String password,
     BuildContext context,
   ) async {
+    setState(() {
+      _sending = true;
+    });
+
     return _webClient.save(transaction, password).catchError(
       (e) {
         _showFailureMessage(context, message: e.message);
@@ -131,7 +145,11 @@ class _TransactionFormState extends State<TransactionForm> {
       (e) {
         _showFailureMessage(context);
       },
-    );
+    ).whenComplete(() {
+      setState(() {
+        _sending = false;
+      });
+    });
   }
 
   void _showFailureMessage(
