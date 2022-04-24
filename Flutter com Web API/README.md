@@ -52,3 +52,9 @@
 - Capturar exceptions específicas;
 - Capturar múltiplas exceptions;
 - Implementar exceptions personalizadas.
+
+### Aula 04 - Idempotência ao enviar transferência
+
+- Aplicar idempotência ao enviar transferências;
+- Utilizar UUID no Dart;
+- Evitar problema de código HTTP inesperado.

@@ -6,6 +6,7 @@ import 'package:bytebank/models/transaction.dart';
 import 'package:bytebank/widgets/response_dialog.dart';
 import 'package:bytebank/widgets/transaction_auth_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class TransactionForm extends StatefulWidget {
   final Contact contact;
@@ -19,6 +20,7 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final TextEditingController _valueController = TextEditingController();
   final TransactionWebClient _webClient = TransactionWebClient();
+  final String transactionId = const Uuid().v4();
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +79,7 @@ class _TransactionFormState extends State<TransactionForm> {
                         builder: (_) => TransactionAuthDialog(
                           onConfirm: (String password) {
                             final Transaction transaction = Transaction(
+                              transactionId,
                               value,
                               widget.contact,
                             );
@@ -133,11 +136,11 @@ class _TransactionFormState extends State<TransactionForm> {
 
   void _showFailureMessage(
     BuildContext context, {
-    String? message,
+    String message = 'Unknown error',
   }) {
     showDialog(
       context: context,
-      builder: (_) => FailureDialog(message ?? 'Unknown error'),
+      builder: (_) => FailureDialog(message),
     );
   }
 
