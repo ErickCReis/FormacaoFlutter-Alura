@@ -5,7 +5,6 @@ class HeadersInterceptor implements InterceptorContract {
   Future<RequestData> interceptRequest({required RequestData data}) async {
     data.headers.addAll({
       'Content-type': 'application/json',
-      'password': '1000',
     });
     return data;
   }

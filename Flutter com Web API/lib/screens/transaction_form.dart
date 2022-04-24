@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:bytebank/http/webclient.dart';
 import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/transaction.dart';
+import 'package:bytebank/utils/currency_input_formatter.dart';
+import 'package:bytebank/utils/format.dart';
 import 'package:bytebank/widgets/progress.dart';
 import 'package:bytebank/widgets/response_dialog.dart';
 import 'package:bytebank/widgets/transaction_auth_dialog.dart';
@@ -23,6 +26,7 @@ class _TransactionFormState extends State<TransactionForm> {
   final TransactionWebClient _webClient = TransactionWebClient();
   final String transactionId = const Uuid().v4();
 
+  bool _isValid = true;
   bool _sending = false;
 
   @override
@@ -57,10 +61,20 @@ class _TransactionFormState extends State<TransactionForm> {
                 padding: const EdgeInsets.only(top: 16),
                 child: TextField(
                   controller: _valueController,
+                  onChanged: _checkValue,
+                  inputFormatters: [
+                    CurrencyInputFormatter(),
+                  ],
+                  autofocus: true,
                   style: const TextStyle(fontSize: 24),
-                  decoration: const InputDecoration(labelText: 'Value'),
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    labelText: 'Value',
+                    hintText: '\$0.00',
+                    errorText: _isValid ? null : 'Invalid value',
+                  ),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                 ),
               ),
               Padding(
@@ -77,12 +91,13 @@ class _TransactionFormState extends State<TransactionForm> {
                           )
                         : const Text('Transfer'),
                     onPressed: () {
-                      final double? value =
-                          double.tryParse(_valueController.text);
+                      _checkValue(_valueController.text);
 
-                      if (_sending || value == null) {
+                      if (_sending || !_isValid) {
                         return;
                       }
+
+                      final double value = parseCurrency(_valueController.text);
 
                       showDialog(
                         context: context,
@@ -107,6 +122,12 @@ class _TransactionFormState extends State<TransactionForm> {
         ),
       ),
     );
+  }
+
+  void _checkValue(String value) {
+    setState(() {
+      _isValid = parseCurrency(value) > 0;
+    });
   }
 
   Future<void> _save(

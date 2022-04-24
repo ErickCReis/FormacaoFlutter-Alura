@@ -5,24 +5,33 @@ import 'package:bytebank/models/transaction.dart';
 import 'package:http/http.dart';
 
 class TransactionWebClient {
+  static const Map<int, String> _statusCodeResponses = {
+    400: 'There was an error submitting the transaction',
+    401: 'Authentication failed',
+    409: 'Transaction already exists',
+  };
+
   Future<List<Transaction>> findAll() async {
-    final Response response = await client.get(baseUrl);
+    final Response response = await client.get(
+      baseUrl.replace(path: 'transactions'),
+    );
 
-    final List<dynamic> decodedJson = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      final List<dynamic> decodedJson = json.decode(response.body);
+      return decodedJson
+          .map((dynamic json) => Transaction.fromJson(json))
+          .toList()
+          .reversed
+          .toList();
+    }
 
-    return decodedJson
-        .map((dynamic json) => Transaction.fromJson(json))
-        .toList();
+    throw HttpException.getMessage(response.statusCode, _statusCodeResponses);
   }
 
   Future<Transaction?> save(Transaction transaction, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
     final response = await client.post(
-      baseUrl,
-      headers: {
-        'Content-type': 'application/json',
-        'password': password,
-      },
+      baseUrl.replace(path: 'transactions'),
+      headers: {'password': password},
       body: jsonEncode(transaction.toJson()),
     );
 
@@ -30,26 +39,6 @@ class TransactionWebClient {
       return Transaction.fromJson(jsonDecode(response.body));
     }
 
-    throw HttpException(_getMessage(response.statusCode));
+    throw HttpException.getMessage(response.statusCode, _statusCodeResponses);
   }
-
-  String _getMessage(int statusCode) {
-    if (_statusCodeResponses.containsKey(statusCode)) {
-      return _statusCodeResponses[statusCode]!;
-    }
-
-    return 'Unknown error';
-  }
-
-  static const Map<int, String> _statusCodeResponses = {
-    400: 'There was an error submitting the transaction',
-    401: 'Authentication failed',
-    409: 'Transaction already exists',
-  };
-}
-
-class HttpException implements Exception {
-  final String message;
-
-  HttpException(this.message);
 }
