@@ -97,7 +97,7 @@ class FailureDialog extends StatelessWidget {
     this.title = 'Failure',
     this.icon = Icons.warning,
     Key? key,
-  }) : super(key: key);
+  }):super(key: key);
 
   @override
   Widget build(BuildContext context) {

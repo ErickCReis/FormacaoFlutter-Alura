@@ -46,3 +46,9 @@
 - Capturar erros ao executar o Future;
 - Identificar exceptions lançadas no Future;
 - Apresentar a mensagem adequada de acordo com a resposta da requisição.
+
+### Aula 03 - Evitando multiplos problemas
+
+- Capturar exceptions específicas;
+- Capturar múltiplas exceptions;
+- Implementar exceptions personalizadas.
