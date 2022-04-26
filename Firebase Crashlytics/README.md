@@ -14,3 +14,14 @@
   - O Console Firebase é o responsável por gerar uma forma intuitiva de configurarmos as soluções oferecidas e ver relatórios de uso e registros de erros e gerar comunicação entre aplicativo e Firebase.
 - Exceções
   - Aprendemos mais sobre o termo exceção, como podemos gerar e capturar exceções geradas por algum ocorrido inesperado.
+
+  ### Aula 02 - Tipos de exceções
+
+- O que é uma exceção de app
+  - Aprendemos o que é uma exceção de app e quais são os momentos em que ela pode ocorrer. - Consideramos exceções de app tudo o que está diretamente ligado ao ambiente em que o - aplicativo está em contato (sistema operacional, permissões, espaço em disco e memória e - afins)
+- O que é uma exceção web
+  - Aprendemos o que é uma exceção web, erros mais comuns que encontraremos e por quais motivos apesar de serem comportamentos excepcionais as exceções web não são necessariamente um erro e sim um comportamento fora do desejado.
+- Chaves no Crashlytics
+  - Aprendemos como utilizar as chaves para passar o máximo de informações possíveis sobre o - momento em que a exceção foi registrada para facilitar o processo analítico e a tomada de - decisão com relação ao ocorrido para a aplicação de futuras correções.
+- Cadastro de exceções não detectadas
+  - Como vimos, nem tudo são erros. Também existem comportamentos não desejados que consideramos errôneos. Logo, podemos considerar como uma exceção não detectada automaticamente pelo Crashlytics no Flutter e precisamos informar manualmente ao Crashlytics de que queremos que ele registre esta falha através do comando `recordError`.
