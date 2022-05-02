@@ -25,3 +25,12 @@
   - Aprendemos como utilizar as chaves para passar o máximo de informações possíveis sobre o - momento em que a exceção foi registrada para facilitar o processo analítico e a tomada de - decisão com relação ao ocorrido para a aplicação de futuras correções.
 - Cadastro de exceções não detectadas
   - Como vimos, nem tudo são erros. Também existem comportamentos não desejados que consideramos errôneos. Logo, podemos considerar como uma exceção não detectada automaticamente pelo Crashlytics no Flutter e precisamos informar manualmente ao Crashlytics de que queremos que ele registre esta falha através do comando `recordError`.
+
+  ### Aula 03 - Rastreamento de usuário
+
+- Identificação de usuários
+  - Aprendemos a registrar no relatório de erros quem é o usuário que vivenciou a exceção, com isso, é possível futuramente pensar em maneiras de rastrear o erro e tomar decisões de correção assertivas com base em casos específicos.
+- Dashboard do Crashlytics
+  - Aprendemos a realizar a correta visualização de dados para entender e explorar ao máximo os recursos que o Crashlytics traz para nós. Visualizamos filtros, opções de busca, detalhamento de erros, chaves, dispositivo e disponibilidade de hardware e afins.
+- Configuração de debug
+  - Vimos como configurar as chamadas do Crashlytics assim como a configuração inicial para que ele somente registre os relatórios de erro em ocasiões necessárias visando não poluir o dashboard com dados não relevantes ao analista de erros.
