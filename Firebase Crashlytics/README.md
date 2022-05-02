@@ -34,3 +34,14 @@
   - Aprendemos a realizar a correta visualização de dados para entender e explorar ao máximo os recursos que o Crashlytics traz para nós. Visualizamos filtros, opções de busca, detalhamento de erros, chaves, dispositivo e disponibilidade de hardware e afins.
 - Configuração de debug
   - Vimos como configurar as chamadas do Crashlytics assim como a configuração inicial para que ele somente registre os relatórios de erro em ocasiões necessárias visando não poluir o dashboard com dados não relevantes ao analista de erros.
+
+  ### Aula 04 - Mensagem de erro
+
+- Definição das zonas de erro
+  - Aprendemos a definir zonas de erro que garantem que nada passe despercebido pelo monitoramento de exceções caso algo ocorra algo de errado e o Flutter não seja capaz de perceber o ocorrido.
+- Implementação do SnackBar
+  - Aprendemos a realizar a implementação do widget SnackBar na nossa aplicação e entendemos como ele pode ser uma alternativa discreta e que oferece uma funcionalidade para darmos ao usuário como um botão na mensagem, por exemplo.
+- Implementação do Toast
+  - Vimos como podemos utilizar a extensão do Toast para exibir mensagens extremamente minimalistas e simples aos usuários de maneira objetiva e rápida.
+- Dark Patterns
+  - Vimos o que são dark patterns e abrimos caminho para estudar mais a fundo o tema.

@@ -12,6 +12,7 @@ import 'package:bytebank/widgets/transaction_auth_dialog.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TransactionForm extends StatefulWidget {
   final Contact contact;
@@ -199,10 +200,22 @@ class _TransactionFormState extends State<TransactionForm> {
     BuildContext context, {
     String message = 'Unknown error',
   }) {
-    showDialog(
-      context: context,
-      builder: (_) => FailureDialog(message),
-    );
+    //// DIALOG
+    // showDialog(
+    //   context: context,
+    //   builder: (_) => FailureDialog(message),
+    // );
+
+    //// SNACKBAR
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(
+    //     content: Text(message),
+    //     backgroundColor: Colors.red,
+    //   ),
+    // );
+
+    //// TOAST
+    Fluttertoast.showToast(msg: message);
   }
 
   void _showSuccessMessage(
