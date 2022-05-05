@@ -12,3 +12,9 @@
 - A importância de manter o estado da nossa aplicação em um único lugar, aplicando o Single Source of Truth (Única Fonte de Verdade);
 - Como instanciar e gerenciar uma classe uma única vez através do Provider;
 - Como consumir essa classe através do Consumer.
+
+### Aula 03 - Usando Provider
+
+- Como gerenciar o conteúdo do nosso Saldo em um único lugar;
+- Consumir os nossos dados com o Consumer;
+- Notificar quem estiver usando os dados do nosso saldo através do NotifyListeners.

@@ -11,7 +11,7 @@ class SaldoCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Consumer<Saldo>(
-          builder: (context, valor, _) {
+          builder: (_, valor, __) {
             return Text(
               valor.toString(),
               textAlign: TextAlign.center,
