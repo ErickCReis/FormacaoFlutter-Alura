@@ -1,4 +1,6 @@
-class Saldo {
+import 'package:flutter/widgets.dart';
+
+class Saldo extends ChangeNotifier {
   final double valor;
 
   Saldo(this.valor);
