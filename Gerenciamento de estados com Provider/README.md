@@ -24,3 +24,9 @@
 - Como gerenciar múltiplas classes com o MultipleProvider;
 - Adicionar uma Transferência através do Provider;
 - Fazer com que essa transferência esteja vinculada com o saldo da conta.
+
+### Aula 05 - Validando e finalizando o app
+
+- Como componentizar melhor nossa aplicação, utilizando o mesmo formulário para cadastrar transferências tanto na página inicial, quanto na página de transferências;
+- Criar uma lista com as últimas transferências realizadas;
+- Atualizar as listas de acordo com o Provider.

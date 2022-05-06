@@ -1,31 +1,27 @@
 import 'package:bytebank/models/transferencia.dart';
+import 'package:bytebank/models/transferencias.dart';
 import 'package:bytebank/screens/transferencia/formulario.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 const _tituloAppBar = 'Tranferências';
 
-class ListaTranferencias extends StatefulWidget {
-  final List<Transferencia> _transferencias = [];
+class ListaTranferencias extends StatelessWidget {
+  const ListaTranferencias({Key? key}) : super(key: key);
 
-  ListaTranferencias({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() {
-    return ListaTranferenciasState();
-  }
-}
-
-class ListaTranferenciasState extends State<ListaTranferencias> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(_tituloAppBar),
       ),
-      body: ListView.builder(
-        itemCount: widget._transferencias.length,
-        itemBuilder: (_, indece) =>
-            ItemTranferencia(widget._transferencias[indece]),
+      body: Consumer<Transferencias>(
+        builder: (_, transferencias, __) => ListView.builder(
+          itemCount: transferencias.transferencias.length,
+          itemBuilder: (_, indice) => ItemTranferencia(
+            transferencias.transferencias[indice],
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
@@ -35,20 +31,10 @@ class ListaTranferenciasState extends State<ListaTranferencias> {
             MaterialPageRoute(
               builder: (_) => FormularioTransferencia(),
             ),
-          ).then(_atualiza);
+          );
         },
       ),
     );
-  }
-
-  void _atualiza(Transferencia? transferenciaRecebida) {
-    if (transferenciaRecebida == null) {
-      return;
-    }
-
-    setState(() {
-      widget._transferencias.add(transferenciaRecebida);
-    });
   }
 }
 
@@ -62,8 +48,8 @@ class ItemTranferencia extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: const Icon(Icons.monetization_on),
-        title: Text(_tranferencia.valor.toString()),
-        subtitle: Text(_tranferencia.numeroConta.toString()),
+        title: Text(_tranferencia.valorFormatado),
+        subtitle: Text(_tranferencia.contaFormatada),
       ),
     );
   }
