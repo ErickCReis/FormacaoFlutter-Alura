@@ -1,6 +1,9 @@
 import 'package:bytebank/components/editor.dart';
+import 'package:bytebank/models/saldo.dart';
 import 'package:bytebank/models/transferencia.dart';
+import 'package:bytebank/models/transferencias.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 const _tituloAppBar = 'Criando tranferência';
 
@@ -53,11 +56,37 @@ class FormularioTransferencia extends StatelessWidget {
     final int? numeroConta = int.tryParse(_controladorCampoNumeroConta.text);
     final double? valor = double.tryParse(_controladorCampoValor.text);
 
-    if (numeroConta == null || valor == null) {
+    if (!transferenciaValida(context, numeroConta, valor)) {
       return;
     }
 
-    final tranferenciaCriada = Transferencia(valor, numeroConta);
-    Navigator.pop(context, tranferenciaCriada);
+    final novaTransferencia = Transferencia(valor!, numeroConta!);
+    _atualizaEstado(context, novaTransferencia);
+    Navigator.pop(context);
+  }
+
+  bool transferenciaValida(
+    BuildContext context,
+    int? numeroConta,
+    double? valor,
+  ) {
+    final valoresValidos = valor != null && valor > 0 && numeroConta != null;
+    if (!valoresValidos) {
+      return false;
+    }
+
+    final temSaldo = valor <= Provider.of<Saldo>(context, listen: false).valor;
+    if (!temSaldo) {
+      return false;
+    }
+
+    return true;
+  }
+
+  void _atualizaEstado(BuildContext context, Transferencia novaTransferencia) {
+    Provider.of<Transferencias>(context, listen: false)
+        .adiciona(novaTransferencia);
+
+    Provider.of<Saldo>(context, listen: false).subtrai(novaTransferencia.valor);
   }
 }

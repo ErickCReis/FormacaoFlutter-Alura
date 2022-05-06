@@ -18,3 +18,9 @@
 - Como gerenciar o conteúdo do nosso Saldo em um único lugar;
 - Consumir os nossos dados com o Consumer;
 - Notificar quem estiver usando os dados do nosso saldo através do NotifyListeners.
+
+### Aula 04 - Gerenciando as transferências
+
+- Como gerenciar múltiplas classes com o MultipleProvider;
+- Adicionar uma Transferência através do Provider;
+- Fazer com que essa transferência esteja vinculada com o saldo da conta.
