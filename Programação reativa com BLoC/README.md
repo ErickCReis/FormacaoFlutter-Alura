@@ -15,3 +15,9 @@
 - Mais widgets;
 - Integrando telas;
 - BlocListener.
+
+### Aula 03 - Criando um framework
+
+- Criando um framework pra gerenciamento de estado;
+- Separando UI, estado, e eventos;
+- Polimorfismo em Dart.
