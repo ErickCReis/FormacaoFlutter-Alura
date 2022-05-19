@@ -12,10 +12,7 @@ class NameContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => NameCubit('Erick'),
-      child: NameView(),
-    );
+    return NameView();
   }
 }
 
@@ -32,29 +29,32 @@ class NameView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Change name'),
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: _nameController,
-            decoration: const InputDecoration(
-              labelText: 'Desired name',
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                labelText: 'Desired name',
+              ),
+              style: const TextStyle(fontSize: 24),
             ),
-            style: const TextStyle(fontSize: 24),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: SizedBox(
-              width: double.maxFinite,
-              child: ElevatedButton(
-                onPressed: () {
-                  final name = _nameController.text;
-                  context.read<NameCubit>().change(name);
-                },
-                child: const Text("Change"),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: SizedBox(
+                width: double.maxFinite,
+                child: ElevatedButton(
+                  onPressed: () {
+                    final name = _nameController.text;
+                    context.read<NameCubit>().change(name);
+                  },
+                  child: const Text("Change"),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -9,3 +9,9 @@
 - Cubit;
 - Gerenciando seu estado;
 - Primitivo e objeto como estado.
+
+### Aula 02 - Integrando telas
+
+- Mais widgets;
+- Integrando telas;
+- BlocListener.
