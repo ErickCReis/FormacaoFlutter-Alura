@@ -21,3 +21,10 @@
 - Criando um framework pra gerenciamento de estado;
 - Separando UI, estado, e eventos;
 - Polimorfismo em Dart.
+
+### Aula 04 - Formulários e bloc
+
+- Como lidar com assincronicidade no meio de uma tela;
+- Formulários e bloc;
+- Envio e sucesso assíncrono;
+- Falha assíncrona.
