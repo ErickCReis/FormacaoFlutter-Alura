@@ -47,3 +47,10 @@
 - Que o `assert` precisa ser habilitado na compilação;
 - Que normalmente usamos o `_` para constantes;
 - Por que faz sentido carregar mensagens de maneira lazy.
+
+### Aula 03 - I18n de maneira lazy
+
+- Como construir uma tela para mostrar o carregamento das mensagens (`ProgressView`);
+- Que as mensagens são carregados através de um evento (`emit`);
+- Que a aplicação usa o `DashboardContainer`, que usa o `I18NLoadingContainer` como `child`, para carregar as mensagens e, quando carregou, chamamos a `DashboardView`;
+- Que a `DashboardView` recebe as mensagens que serão carregadas _lazy_.
