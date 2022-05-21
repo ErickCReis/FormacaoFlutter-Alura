@@ -111,13 +111,3 @@ class DashboardViewI18N extends ViewI18N {
         'pt-br': 'Mudar nome',
       });
 }
-
-class ViewI18N {
-  late String _language;
-
-  ViewI18N(BuildContext context) {
-    _language = context.read<CurrentLocaleCubit>().state;
-  }
-
-  String localize(Map<String, String> map) => map[_language] ?? '';
-}

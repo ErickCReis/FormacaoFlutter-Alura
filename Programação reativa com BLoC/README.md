@@ -38,4 +38,12 @@
 - A _localização_ (`l18n`) é relacionada com a formatação de data, moeda, números em geral, etc (o seu app se adapta ao local);
 - A _internacionalização_ (`i18n`) é relacionada ao atender vários idiomas;
 - Para trabalhar com a _Internacionalização_, usamos o `LocalizationContainer`, que deve estender o `StatelessContainer` (ou `BlocContainer`), que encapsula a linguagem (`Cubit<String>`) e associa ao _context_;
-- Usamos um componente de i18n por tela, que encapsula a recuperação das mensagens
+- Usamos um componente de i18n por tela, que encapsula a recuperação das mensagens.
+
+### Aula 02 - Assert e mensagens _eager_
+
+- Como usamos uma _cláusula de guarda_ (`assert`) para validar o argumento;
+- Que o `assert` deve ser usado para validar erros de desenvolvimento (que não são de negócio);
+- Que o `assert` precisa ser habilitado na compilação;
+- Que normalmente usamos o `_` para constantes;
+- Por que faz sentido carregar mensagens de maneira lazy.
