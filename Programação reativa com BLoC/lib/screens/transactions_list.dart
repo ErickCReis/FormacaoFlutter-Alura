@@ -4,7 +4,7 @@ import 'package:bytebank/http/webclient.dart';
 import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:bytebank/models/transaction.dart';
 import 'package:bytebank/widgets/centered_message.dart';
-import 'package:bytebank/widgets/progress.dart';
+import 'package:bytebank/widgets/progress/progress.dart';
 import 'package:bytebank/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
 

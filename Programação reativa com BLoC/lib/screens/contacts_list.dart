@@ -5,7 +5,7 @@ import 'package:bytebank/screens/transaction_form.dart';
 import 'package:bytebank/widgets/bloc_container.dart';
 import 'package:bytebank/widgets/centered_message.dart';
 import 'package:bytebank/widgets/contact_item.dart';
-import 'package:bytebank/widgets/progress.dart';
+import 'package:bytebank/widgets/progress/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -64,3 +64,12 @@
 - Como carregar as mensagens da aplicação inteira ou tela por tela:
   - Usamos o nome da tela para o arquivo de mensagem;
   - Usando, por exemplo, `dashboard_en.json` ou `dashboard_pt.json`.
+
+### Aula 05 - Cache local e boas práticas
+
+- Como trabalhar com cache local;
+  - Usamos a classe `LocalStorage`;
+  - Usamos o mesmo prefixo `viewKey` para o storage;
+  - O _storage_ é inicializado de maneira assíncrona;
+- Como usar mensagens para várias telas, usando `BlocProvider` e `Builder`;
+- Como organizar os arquivos relacionados ao `i18n` em camadas.

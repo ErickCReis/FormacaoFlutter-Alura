@@ -1,6 +1,6 @@
-import 'package:bytebank/screens/dashboard.dart';
+import 'package:bytebank/screens/dashboard/dashboard_container.dart';
+import 'package:bytebank/widgets/localization/locale.dart';
 import 'package:bytebank/theme.dart';
-import 'package:bytebank/widgets/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

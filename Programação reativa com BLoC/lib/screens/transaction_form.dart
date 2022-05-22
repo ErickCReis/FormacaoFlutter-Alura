@@ -8,7 +8,7 @@ import 'package:bytebank/utils/currency_input_formatter.dart';
 import 'package:bytebank/utils/format.dart';
 import 'package:bytebank/widgets/bloc_container.dart';
 import 'package:bytebank/widgets/error.dart';
-import 'package:bytebank/widgets/progress.dart';
+import 'package:bytebank/widgets/progress/progress_view.dart';
 import 'package:bytebank/widgets/transaction_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
