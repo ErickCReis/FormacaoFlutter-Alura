@@ -6,7 +6,8 @@ class Transaction {
   final Contact contact;
   final DateTime? date;
 
-  Transaction(this.id, this.value, this.contact, {this.date});
+  Transaction(this.id, this.value, this.contact, {this.date})
+      : assert(value > 0);
 
   Transaction.fromJson(Map<String, dynamic> json)
       : id = json['id'],
