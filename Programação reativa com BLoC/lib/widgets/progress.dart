@@ -47,7 +47,12 @@ class Progress extends StatelessWidget {
 }
 
 class ProgressView extends StatelessWidget {
-  const ProgressView({Key? key}) : super(key: key);
+  final String message;
+
+  const ProgressView({
+    this.message = 'Sending ...',
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

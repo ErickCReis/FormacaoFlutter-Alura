@@ -1,3 +1,4 @@
+import 'package:bytebank/http/webclients/i18n_webclient.dart';
 import 'package:bytebank/widgets/bloc_container.dart';
 import 'package:bytebank/widgets/error.dart';
 import 'package:bytebank/widgets/progress.dart';
@@ -22,7 +23,7 @@ class LocalizationContainer extends BlocContainer {
 }
 
 class CurrentLocaleCubit extends Cubit<String> {
-  CurrentLocaleCubit() : super('en');
+  CurrentLocaleCubit() : super('pt-br');
 }
 
 class ViewI18N {
@@ -79,32 +80,34 @@ class FatalErrorI18NMessagesState extends I18NMessagesState {
 class I18NMessageCubit extends Cubit<I18NMessagesState> {
   I18NMessageCubit() : super(const InitI18NMessagesState());
 
-  void reload() {
+  void reload(I18NWebClient client) {
     emit(const LoadingI18NMessagesState());
 
-    emit(
-      LoadedI18NMessagesState(I18NMessages({
-        'transfer': 'Transfer',
-        'transaction_feed': 'Transaction feed',
-        'change_name': 'Change name',
-      })),
-    );
+    client.findAll().then((messages) {
+      emit(LoadedI18NMessagesState(I18NMessages(messages)));
+    });
   }
 }
 
 typedef I18NMessageCreator = Widget Function(I18NMessages messages);
 
 class I18NLoadingContainer extends BlocContainer {
+  final String viewKey;
   final I18NMessageCreator creator;
 
-  const I18NLoadingContainer(this.creator, {Key? key}) : super(key: key);
+  const I18NLoadingContainer({
+    required this.viewKey,
+    required this.creator,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<I18NMessageCubit>(
       create: (_) {
         final cubit = I18NMessageCubit();
-        cubit.reload();
+        final language = context.read<CurrentLocaleCubit>().state;
+        cubit.reload(I18NWebClient(language, viewKey));
         return cubit;
       },
       child: I18NLoadingView(creator),
@@ -123,7 +126,7 @@ class I18NLoadingView extends StatelessWidget {
       builder: (_, state) {
         if (state is InitI18NMessagesState ||
             state is LoadingI18NMessagesState) {
-          return const ProgressView();
+          return const ProgressView(message: 'Loading...');
         }
 
         if (state is LoadedI18NMessagesState) {

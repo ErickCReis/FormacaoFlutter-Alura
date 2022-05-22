@@ -54,3 +54,13 @@
 - Que as mensagens são carregados através de um evento (`emit`);
 - Que a aplicação usa o `DashboardContainer`, que usa o `I18NLoadingContainer` como `child`, para carregar as mensagens e, quando carregou, chamamos a `DashboardView`;
 - Que a `DashboardView` recebe as mensagens que serão carregadas _lazy_.
+
+### Aula 04 - Várias telas e localizações
+
+- Que as mensagens devem estar em um servidor da sua escolha, dentro de um arquivo JSON;
+- Como usamos o `HttpClient` para executar a requisição HTTP (não era novidade!);
+- Como carregar as mensagens de maneira assíncrona;
+- Como dar suporte a várias linguagens, usando URLs diferentes;
+- Como carregar as mensagens da aplicação inteira ou tela por tela:
+  - Usamos o nome da tela para o arquivo de mensagem;
+  - Usando, por exemplo, `dashboard_en.json` ou `dashboard_pt.json`.
