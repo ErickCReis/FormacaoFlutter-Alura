@@ -1,12 +1,17 @@
+import 'package:bytebank/database/dao/contact_dao.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const BytebankApp());
+  runApp(BytebankApp(
+    contactDao: ContactDao(),
+  ));
 }
 
 class BytebankApp extends StatelessWidget {
-  const BytebankApp({Key? key}) : super(key: key);
+  final ContactDao contactDao;
+
+  const BytebankApp({required this.contactDao, Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -25,7 +30,7 @@ class BytebankApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const Dashboard(),
+      home: Dashboard(contactDao: contactDao),
     );
   }
 }

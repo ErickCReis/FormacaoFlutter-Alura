@@ -8,15 +8,15 @@ import 'package:bytebank/widgets/progress.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatefulWidget {
-  const ContactsList({Key? key}) : super(key: key);
+  final ContactDao contactDao;
+
+  const ContactsList({required this.contactDao, Key? key}) : super(key: key);
 
   @override
   State<ContactsList> createState() => _ContactsListState();
 }
 
 class _ContactsListState extends State<ContactsList> {
-  final ContactDao _dao = ContactDao();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _ContactsListState extends State<ContactsList> {
       ),
       body: FutureBuilder<List<Contact>>(
         initialData: const [],
-        future: _dao.findAll(),
+        future: widget.contactDao.findAll(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Progress();
@@ -67,7 +67,9 @@ class _ContactsListState extends State<ContactsList> {
           Navigator.of(context)
               .push(
                 MaterialPageRoute(
-                  builder: (context) => const ContactForm(),
+                  builder: (context) => ContactForm(
+                    contactDao: widget.contactDao,
+                  ),
                 ),
               )
               .then((_) => setState(() {}));

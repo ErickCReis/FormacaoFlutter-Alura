@@ -11,3 +11,9 @@
 - Adicionar scroll no Widget ocupando a tela inteira;
 - Utilizar outros finders para buscas específicas;
 - Reutilizar lógica do finder com predicate.
+
+### Aula 03 - Implementando teste de fluxo
+
+- Testar fluxo com teste de Widget;
+- Configurar Widgets o código para receber dependências;
+- Utilizar objetos simulados para evitar o código de integração.

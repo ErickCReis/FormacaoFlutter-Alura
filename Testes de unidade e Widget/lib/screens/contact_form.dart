@@ -3,7 +3,9 @@ import 'package:bytebank/models/contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactForm extends StatefulWidget {
-  const ContactForm({Key? key}) : super(key: key);
+  final ContactDao contactDao;
+
+  const ContactForm({required this.contactDao, Key? key}) : super(key: key);
 
   @override
   State<ContactForm> createState() => _ContactFormState();
@@ -13,7 +15,6 @@ class _ContactFormState extends State<ContactForm> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _accountNumberController =
       TextEditingController();
-  final ContactDao _dao = ContactDao();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class _ContactFormState extends State<ContactForm> {
 
                     final Contact newContact = Contact(0, name, accountNumber);
 
-                    await _dao.save(newContact);
+                    await widget.contactDao.save(newContact);
 
                     Navigator.pop(context);
                   },
