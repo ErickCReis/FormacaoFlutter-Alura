@@ -17,3 +17,9 @@
 - Testar fluxo com teste de Widget;
 - Configurar Widgets o código para receber dependências;
 - Utilizar objetos simulados para evitar o código de integração.
+
+### Aula 04 - Simulando comportamentos
+
+- Verificar chamadas de métodos de objetos simulados;
+- Gerar código automático do operador == e o hashcode;
+- Finalizar um teste de fluxo.

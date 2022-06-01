@@ -6,13 +6,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 
 import 'dashboard_widget_test.mocks.dart';
-import 'matchers.dart';
+import '../matchers.dart';
 
 @GenerateMocks([ContactDao])
 void main() {
   group('When Dashboard is opened', () {
+    late MockContactDao mockContactDao;
+
+    setUp(() {
+      mockContactDao = MockContactDao();
+    });
+
     testWidgets('Should display the main image', (WidgetTester tester) async {
-      final mockContactDao = MockContactDao();
       await tester.pumpWidget(MaterialApp(
         home: Dashboard(
           contactDao: mockContactDao,
@@ -24,7 +29,6 @@ void main() {
     });
 
     testWidgets('Should display the transfer feature', (tester) async {
-      final mockContactDao = MockContactDao();
       await tester.pumpWidget(MaterialApp(
         home: Dashboard(
           contactDao: mockContactDao,
@@ -41,15 +45,16 @@ void main() {
     });
 
     testWidgets('Should display the transation feed feature', (tester) async {
-      final mockContactDao = MockContactDao();
       await tester.pumpWidget(MaterialApp(
         home: Dashboard(
           contactDao: mockContactDao,
         ),
       ));
 
-      final trasactionFeedFeatureItem = find.byWidgetPredicate((widget) =>
-          featureItemMatcher(widget, 'Transaction Feed', Icons.description));
+      final trasactionFeedFeatureItem = find.byWidgetPredicate(
+        (widget) =>
+            featureItemMatcher(widget, 'Transaction Feed', Icons.description),
+      );
 
       expect(trasactionFeedFeatureItem, findsOneWidget);
     });

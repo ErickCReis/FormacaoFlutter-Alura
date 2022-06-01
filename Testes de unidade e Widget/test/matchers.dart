@@ -8,9 +8,9 @@ bool featureItemMatcher(Widget widget, String name, IconData icon) {
   return false;
 }
 
-bool textFieldMatcher(Widget widget, String name) {
+bool textFieldMatcher(Widget widget, String labelText) {
   if (widget is TextField) {
-    return widget.decoration?.labelText == name;
+    return widget.decoration?.labelText == labelText;
   }
   return false;
 }

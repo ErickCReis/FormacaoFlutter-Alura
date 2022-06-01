@@ -1,5 +1,6 @@
 import 'package:bytebank/database/dao/contact_dao.dart';
 import 'package:bytebank/main.dart';
+import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/contact_form.dart';
 import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/dashboard.dart';
@@ -8,7 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'matchers.dart';
+import '../matchers.dart';
+import 'actions.dart';
 import 'save_contact_flow.mocks.dart';
 
 @GenerateMocks([ContactDao])
@@ -25,15 +27,13 @@ void main() {
     final dashboard = find.byType(Dashboard);
     expect(dashboard, findsOneWidget);
 
-    final transferFeatureItem = find.byWidgetPredicate((widget) =>
-        featureItemMatcher(widget, 'Transfer', Icons.monetization_on));
-
-    expect(transferFeatureItem, findsOneWidget);
-    await tester.tap(transferFeatureItem);
+    await clickOnTheTranferFeatureItem(tester);
     await tester.pumpAndSettle();
 
     final contactList = find.byType(ContactsList);
     expect(contactList, findsOneWidget);
+
+    verify(mockContactDao.findAll()).called(1);
 
     final fabNewContact = find.widgetWithIcon(FloatingActionButton, Icons.add);
     expect(fabNewContact, findsOneWidget);
@@ -58,7 +58,11 @@ void main() {
     await tester.tap(createButton);
     await tester.pumpAndSettle();
 
+    verify(mockContactDao.save(Contact(0, 'Test', 123))).called(1);
+
     final contactsListBack = find.byType(ContactsList);
     expect(contactsListBack, findsOneWidget);
+
+    verify(mockContactDao.findAll()).called(1);
   });
 }
