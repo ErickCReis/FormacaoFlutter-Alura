@@ -1,4 +1,5 @@
 import 'package:bytebank/database/dao/contact_dao.dart';
+import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:bytebank/main.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/contact_form.dart';
@@ -13,15 +14,18 @@ import '../matchers.dart';
 import 'actions.dart';
 import 'save_contact_flow.mocks.dart';
 
-@GenerateMocks([ContactDao])
+@GenerateMocks([ContactDao, TransactionWebClient])
 void main() {
   testWidgets('Should save a contact', (tester) async {
     final mockContactDao = MockContactDao();
     when(mockContactDao.findAll()).thenAnswer((_) async => []);
     when(mockContactDao.save(any)).thenAnswer((_) async => 1);
 
+    final mockTransactionWebClient = MockTransactionWebClient();
+
     await tester.pumpWidget(BytebankApp(
       contactDao: mockContactDao,
+      transactionWebClient: mockTransactionWebClient,
     ));
 
     final dashboard = find.byType(Dashboard);
@@ -43,13 +47,13 @@ void main() {
     final contactForm = find.byType(ContactForm);
     expect(contactForm, findsOneWidget);
 
-    final nameTextField = find
-        .byWidgetPredicate((widget) => textFieldMatcher(widget, 'Full name'));
+    final nameTextField = find.byWidgetPredicate(
+        (widget) => textFieldByLabelTextMatcher(widget, 'Full name'));
     expect(nameTextField, findsOneWidget);
     await tester.enterText(nameTextField, 'Test');
 
     final accountNumberTextField = find.byWidgetPredicate(
-        (widget) => textFieldMatcher(widget, 'Account number'));
+        (widget) => textFieldByLabelTextMatcher(widget, 'Account number'));
     expect(accountNumberTextField, findsOneWidget);
     await tester.enterText(accountNumberTextField, '123');
 

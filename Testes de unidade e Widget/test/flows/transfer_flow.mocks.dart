@@ -5,7 +5,9 @@
 import 'dart:async' as _i3;
 
 import 'package:bytebank/database/dao/contact_dao.dart' as _i2;
+import 'package:bytebank/http/webclients/transaction_webclient.dart' as _i5;
 import 'package:bytebank/models/contact.dart' as _i4;
+import 'package:bytebank/models/transaction.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -39,4 +41,26 @@ class MockContactDao extends _i1.Mock implements _i2.ContactDao {
   Map<String, dynamic> toMap(_i4.Contact? contact) =>
       (super.noSuchMethod(Invocation.method(#toMap, [contact]),
           returnValue: <String, dynamic>{}) as Map<String, dynamic>);
+}
+
+/// A class which mocks [TransactionWebClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTransactionWebClient extends _i1.Mock
+    implements _i5.TransactionWebClient {
+  MockTransactionWebClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<List<_i6.Transaction>> findAll() => (super.noSuchMethod(
+          Invocation.method(#findAll, []),
+          returnValue: Future<List<_i6.Transaction>>.value(<_i6.Transaction>[]))
+      as _i3.Future<List<_i6.Transaction>>);
+  @override
+  _i3.Future<_i6.Transaction?> save(
+          _i6.Transaction? transaction, String? password) =>
+      (super.noSuchMethod(Invocation.method(#save, [transaction, password]),
+              returnValue: Future<_i6.Transaction?>.value())
+          as _i3.Future<_i6.Transaction?>);
 }

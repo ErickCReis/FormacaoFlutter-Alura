@@ -23,3 +23,8 @@
 - Verificar chamadas de métodos de objetos simulados;
 - Gerar código automático do operador == e o hashcode;
 - Finalizar um teste de fluxo.
+
+### Aula 05 - Finalizando o teste de fluxo principal
+
+- O que é e como implementar um `InheritedWidget`;
+- Como configurar chaves no Flutter e como buscar um Widget pela chave.

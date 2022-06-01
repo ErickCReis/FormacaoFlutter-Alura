@@ -26,4 +26,18 @@ class Transaction {
   String toString() {
     return 'Transaction{id: $id, value: $value, date: $date, contact: $contact}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Transaction &&
+        runtimeType == other.runtimeType &&
+        value == other.value &&
+        contact == other.contact &&
+        date == other.date;
+  }
+
+  @override
+  int get hashCode => value.hashCode ^ contact.hashCode ^ date.hashCode;
 }
