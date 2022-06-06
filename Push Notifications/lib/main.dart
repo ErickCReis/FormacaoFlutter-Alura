@@ -16,13 +16,56 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final token = await FirebaseMessaging.instance.getToken();
-  setPushToken(token);
+  _startPushNotificationHandler();
 
   runApp(App());
 }
 
-void setPushToken(String? token) async {
+void _startPushNotificationHandler() async {
+  final messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission();
+
+  if (settings.authorizationStatus == AuthorizationStatus.denied ||
+      settings.authorizationStatus == AuthorizationStatus.notDetermined) {
+    return;
+  }
+
+  final token = await messaging.getToken();
+  _setPushToken(token);
+
+  FirebaseMessaging.onMessage.listen(_firebaseMessageForegroundHandler);
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessageBackgroudHandler);
+}
+
+void _firebaseMessageForegroundHandler(message) {
+  print('Foreground message received');
+
+  if (message.data.isNotEmpty) {
+    print('message.data: ${message.data}');
+  }
+
+  if (message.notification != null) {
+    print(
+        'message.notification: Title = ${message.notification?.title}, Body = ${message.notification?.body}');
+  }
+}
+
+Future<void> _firebaseMessageBackgroudHandler(RemoteMessage message) async {
+  print('Background message received');
+
+  if (message.data.isNotEmpty) {
+    print('message.data: ${message.data}');
+  }
+
+  if (message.notification != null) {
+    print(
+        'message.notification: Title = ${message.notification?.title}, Body = ${message.notification?.body}');
+  }
+}
+
+void _setPushToken(String? token) async {
   await GetStorage.init();
 
   if (GetStorage().read<String>('pushToken') == token) {
@@ -30,6 +73,15 @@ void setPushToken(String? token) async {
     return;
   }
 
+  final device = await _getDeviceInfo();
+  device.token = token;
+
+  await sendDevice(device);
+
+  GetStorage().write('pushToken', token);
+}
+
+Future<Device> _getDeviceInfo() async {
   final deviceInfo = DeviceInfoPlugin();
   String? model;
   String? brand;
@@ -44,15 +96,11 @@ void setPushToken(String? token) async {
     brand = 'Apple';
   }
 
-  final device = Device(
-    token: token,
+  return Device(
+    token: null,
     model: model,
     brand: brand,
   );
-
-  sendDevice(device);
-
-  GetStorage().write('pushToken', token);
 }
 
 class App extends StatelessWidget {

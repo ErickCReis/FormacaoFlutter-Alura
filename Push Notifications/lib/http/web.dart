@@ -16,7 +16,7 @@ Future<List<Event>> getAllEvents() async {
   }
 }
 
-void sendDevice(Device device) async {
+Future<void> sendDevice(Device device) async {
   final response = await http.post(
     Uri.parse('$baseUrl/devices'),
     headers: {'Content-Type': 'application/json; charset=utf-8'},
