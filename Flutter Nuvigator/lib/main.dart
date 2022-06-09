@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proj/router_generator.dart';
+import 'package:nuvigator/next.dart';
+import 'package:proj/router.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,11 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Montserrat',
+      theme: ThemeData(fontFamily: 'Montserrat'),
+      home: Nuvigator(
+        router: MyRouter(),
       ),
-      initialRoute: 'home',
-      onGenerateRoute: RouterGenerator.generateRoute,
     );
   }
 }

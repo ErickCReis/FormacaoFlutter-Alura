@@ -11,6 +11,10 @@ import 'package:proj/models/producer_model.dart';
 import 'package:proj/repository/data.dart';
 
 class HomeScreen extends StatefulWidget {
+  final onProducerDetailClick;
+
+  HomeScreen({this.onProducerDetailClick});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -40,8 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(
                     color: Colors.transparent,
-                    icon: Icon(Icons.menu,
-                        color: AppColors.green), // set your color here
+                    icon: Icon(
+                      Icons.menu,
+                      color: AppColors.green,
+                    ), // set your color here
                     onPressed: () => _scaffoldKey.currentState.openDrawer(),
                   ),
                 ],
@@ -140,11 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final prod = Producer.fromJson(producers[producer]);
 
       children.add(OrgsStoresCard(
-        action: () => Navigator.pushNamed(
-          context,
-          'producer-details',
-          arguments: prod,
-        ),
+        action: () => widget.onProducerDetailClick({'producer': prod}),
         img: prod.logo,
         distance: prod.distance,
         title: prod.name,
