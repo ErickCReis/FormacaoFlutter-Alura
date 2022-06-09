@@ -4,7 +4,6 @@ import 'package:proj/core/app_colors.dart';
 import 'package:proj/core/app_images.dart';
 import 'package:proj/models/package_model.dart';
 import 'package:proj/models/producer_model.dart';
-import 'package:proj/screens/package_details_screen.dart';
 
 class ProducerDetailsScreen extends StatelessWidget {
   final Producer producer;
@@ -97,13 +96,13 @@ class ProducerDetailsScreen extends StatelessWidget {
       final pack = Package.fromJson(package);
 
       children.add(InkWell(
-        onTap: () => Navigator.push(
+        onTap: () => Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-              builder: (context) => PackageDetailsScreen(
-                    package: pack,
-                    producer: producer,
-                  )),
+          'package-details',
+          arguments: {
+            'package': pack,
+            'producer': producer,
+          },
         ),
         child: OrgsPackagesCard(
           title: pack.title,
