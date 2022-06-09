@@ -6,6 +6,9 @@ import 'package:proj/core/app_images.dart';
 
 class ProfileScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final onClose;
+
+  ProfileScreen({this.onClose});
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +25,22 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   'Perfil',
                   style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.darkGrey),
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.darkGrey,
+                  ),
                 ),
                 IconButton(
-                    color: Colors.transparent,
-                    icon: Icon(Icons.menu,
-                        color: AppColors.green), // set your color here
-                    onPressed: () {
-                      _scaffoldKey.currentState.openDrawer();
-                    }),
+                  color: Colors.transparent,
+                  icon: Icon(
+                    Icons.menu,
+                    color: AppColors.green,
+                  ), // set your color here
+                  onPressed: () {
+                    onClose();
+                    _scaffoldKey.currentState.openDrawer();
+                  },
+                ),
               ]),
               SizedBox(height: 40),
               Column(

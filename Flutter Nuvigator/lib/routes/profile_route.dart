@@ -11,6 +11,9 @@ class ProfileRoute extends NuRoute {
 
   @override
   Widget build(BuildContext context, NuRouteSettings<Object> settings) {
-    return ProfileScreen();
+    final name = settings.rawParameters['name'];
+    return ProfileScreen(
+      onClose: () => nuvigator.pop('Parâmetro recebido: $name'),
+    );
   }
 }

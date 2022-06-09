@@ -41,7 +41,25 @@ class MenuScreen extends StatelessWidget {
               OrgsMenuCard(
                 text: 'Perfil',
                 icon: Icons.person,
-                action: () => nuvigator.open('profile'),
+                action: () async {
+                  final result =
+                      await nuvigator.open('myapp://profile?name=orgs');
+
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Rota encerrada'),
+                          content: Text('Valor retornado: $result'),
+                          actions: [
+                            TextButton(
+                              child: Text('Fechar'),
+                              onPressed: () => Navigator.of(context).pop(),
+                            )
+                          ],
+                        );
+                      });
+                },
               ),
               Divider(),
               OrgsMenuCard(
